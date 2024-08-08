@@ -1,0 +1,233 @@
+﻿@page "/producto"
+@using BlazorApp1.Client.Services.Contracts
+@using BlazorApp1.DTOs
+@using CurrieTechnologies.Razor.SweetAlert2
+
+@inject SweetAlertService Swal;
+@inject IMarcaService marcaService;
+@inject ICategoriaService categoriaService;
+@inject IProductoService productoService;
+
+<PageTitle>Productos</PageTitle>
+
+<h3>Producto</h3>
+
+<div class="content">
+    <div class="row">
+        <input type="hidden" name="name" value="@idproducto" />
+        <div class="col-md-12">
+            <label>Marca:</label>
+            <select class="form-select" value="@productoDTO.Idmarca" @onchange="MarcaSeleccionada">
+                <option value="0">-- Seleccionar --</option>
+                @foreach (var item in listaMarca)
+                {
+                <option value="@item.Idmarca"> @item.Nombre </option>
+                }
+            </select>
+        </div>
+
+        <div class="col-md-12">
+            <label>Categoria:</label>
+            <select class="form-select" value="@productoDTO.Idcategoria" @onchange="CategoriaSeleccionada">
+                <option value="0">-- Seleccionar --</option>
+                @foreach (var item in listaCategoria)
+                {
+                <option value="@item.Idcategoria"> @item.Nombre </option>
+                }
+            </select>
+        </div>
+
+        <div class="col-md-12">
+            <label>Producto:</label>
+            <InputText class="form-control" @bind-Value="productoDTO.Nombre"></InputText>
+        </div>
+
+        <div class="col-md-12">
+            <label>Descripcion:</label>
+            <InputTextArea class="form-control" @bind-Value="productoDTO.Descripcion"></InputTextArea>
+        </div>
+
+        <div class="col-md-12">
+            <label>Cantidad:</label>
+            <InputNumber class="form-control" @bind-Value="productoDTO.Cantidad"></InputNumber>
+        </div>
+
+        <div class="col-md-12">
+            <label>Precio:</label>
+            <InputNumber class="form-control" @bind-Value="productoDTO.Precio"></InputNumber>
+        </div>
+
+    </diV>
+
+    <div class="row mt-2">
+        <div class="col-4">
+            <button class="btn btn-primary" @onclick="GuardarProducto">Guardar</button>
+        </div>
+    </div>
+
+    <hr />
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Marca</th>
+                <th>Categoria</th>
+                <th>Producto</th>
+                <th>Descripcion</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in listaProducto)
+            {
+                <tr>
+                    <td>@item.Marca!.Nombre</td>
+                    <td>@item.Categoria!.Nombre</td>
+                    <td>@item.Nombre</td>
+                    <td>@item.Descripcion</td>
+                    <td>@item.Cantidad</td>
+                    <td>@item.Precio</td>
+                    <td>
+                        <button class="btn btn-sm btn-warning"
+                                @onclick="@(() => EditarProducto(item.Idproducto))">
+                            <span class="bi bi-pencil"></span>
+                        </button>
+                        <button class="btn btn-sm btn-danger"
+                                @onclick="@(() => EliminarProducto(item.Idproducto))">
+                            <span class="bi bi-trash"></span>
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+</div>
+
+@code {
+    List<MarcaDTO> listaMarca = new List<MarcaDTO>();
+    List<CategoriaDTO> listaCategoria = new List<CategoriaDTO>();
+    List<ProductoDTO> listaProducto = new List<ProductoDTO>();
+    MarcaDTO marcaDTO = new MarcaDTO();
+    CategoriaDTO categoriaDTO = new CategoriaDTO();
+    ProductoDTO productoDTO = new ProductoDTO();
+    int idproducto = 0;
+
+    protected override async Task OnInitializedAsync()
+    {
+        listaMarca = new List<MarcaDTO>();
+        listaMarca = await marcaService.Listar();
+
+        listaCategoria = new List<CategoriaDTO>();
+        listaCategoria = await categoriaService.Listar();
+
+        await CargarListaProductos();
+    }
+
+    public void MarcaSeleccionada(ChangeEventArgs e)
+    {
+        int id = Convert.ToInt32(e.Value!.ToString());
+        this.productoDTO.Idmarca = id;
+    }
+
+    public void CategoriaSeleccionada(ChangeEventArgs e)
+    {
+        int id2 = Convert.ToInt32(e.Value!.ToString());
+        this.productoDTO.Idcategoria = id2;
+    }
+
+    private async Task CargarListaProductos()
+    {
+        listaProducto = new List<ProductoDTO>();
+        listaProducto = await productoService.Listar();
+    }
+
+    private async Task GuardarProducto()
+    {
+        try
+        {
+            int id;
+            string mensaje;
+
+            if (this.idproducto == 0)
+            {
+                id = await this.productoService.Registrar(this.productoDTO);
+                mensaje = "Producto Registrado Exitosamente";
+            }
+            else
+            {
+                id = await this.productoService.Editar(this.productoDTO, this.idproducto);
+                mensaje = "Producto Editado Exitosamente";
+            }
+
+            if (id != 0)
+            {
+                this.idproducto = 0;
+                this.productoDTO = new ProductoDTO();
+
+                await Swal.FireAsync("Cambios Guardados", mensaje, SweetAlertIcon.Success);
+
+                await CargarListaProductos();
+                StateHasChanged();
+            }
+            else
+            {
+                await Swal.FireAsync("Error", "No se pudo guardar el producto", SweetAlertIcon.Error);
+            }
+        }
+        catch (Exception ex)
+        {
+            await Swal.FireAsync("Error", $"Ocurrió un error: {ex.Message}", SweetAlertIcon.Error);
+        }
+    }
+
+
+    private async void EditarProducto(int id)
+    {
+        var productoObtenido = await productoService.Buscar(id);
+
+        productoDTO.Nombre = productoObtenido.Nombre;
+        productoDTO.Descripcion = productoObtenido.Descripcion;
+        productoDTO.Idmarca = productoObtenido.Idmarca;
+        productoDTO.Idcategoria = productoObtenido.Idcategoria;
+        productoDTO.Cantidad = productoObtenido.Cantidad;
+        productoDTO.Precio = productoObtenido.Precio;
+        productoDTO.Idproducto = productoObtenido.Idproducto;
+
+        this.idproducto = id;
+
+        StateHasChanged();
+    }
+
+    private async void EliminarProducto(int id)
+    {
+        var resultado = await Swal.FireAsync(new SweetAlertOptions
+            {
+                Title = "Eliminar Producto",
+                Text = "Deseas eliminar este Producto?",
+                Icon = SweetAlertIcon.Question,
+                ShowCancelButton = true
+        });
+
+        if (resultado.IsConfirmed)
+        {
+            var eliminado = await marcaService.Eliminar(id);
+
+            if (eliminado)
+            {
+                await Swal.FireAsync("Eliminado", "Producto Eliminado del Registro", SweetAlertIcon.Info);
+                await CargarListaProductos();
+                StateHasChanged();
+            }
+            else
+            {
+               await Swal.FireAsync("Error", "No pudo ser eliminado la producto", SweetAlertIcon.Error); 
+            }
+
+        }
+    }
+
+}

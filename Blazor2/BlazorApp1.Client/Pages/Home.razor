@@ -1,0 +1,166 @@
+﻿@page "/"
+@using BlazorApp1.Client.Services.Contracts
+@using BlazorApp1.DTOs
+@using CurrieTechnologies.Razor.SweetAlert2
+
+@inject SweetAlertService Swal;
+@inject ICategoriaService categoriaService;
+
+<PageTitle>Categorias</PageTitle>
+
+<h3>Categoria</h3>
+
+<div class="content">
+    <div class="row">
+        <input type="hidden" name="name" value="@idcategoria" />
+
+        <div class="col-md-12">
+            <label>Categoria:</label>
+            <InputText class="form-control" @bind-Value="categoriaDTO.Nombre"></InputText>
+        </div>
+
+        <div class="col-md-12">
+            <label>Descripcion:</label>
+            <InputTextArea class="form-control" @bind-Value="categoriaDTO.Descripcion"></InputTextArea>
+        </div>
+
+    </diV>
+
+    <div class="row mt-2">
+        <div class="col-4">
+            <button class="btn btn-primary" @onclick="GuardarCategoria">Guardar</button>
+        </div>
+    </div>
+
+    <hr />
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Categoria</th>
+                <th>Descripcion</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in listaCategoria)
+            {
+                <tr>
+                    <td>@item.Nombre</td>
+                    <td>@item.Descripcion</td>
+                    <td>
+                        <button class="btn btn-sm btn-warning"
+                                @onclick="@(() => EditarCategoria(item.Idcategoria))">
+                            <span class="bi bi-pencil"></span>
+                        </button>
+                        <button class="btn btn-sm btn-danger"
+                                @onclick="@(() => EliminarCategoria(item.Idcategoria))">
+                            <span class="bi bi-trash"></span>
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+</div>
+
+@code {
+    List<CategoriaDTO> listaCategoria = new List<CategoriaDTO>();
+    CategoriaDTO categoriaDTO = new CategoriaDTO();
+    int idcategoria = 0;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await CargarListaCategorias();
+    }
+
+    private async Task CargarListaCategorias()
+    {
+        listaCategoria = new List<CategoriaDTO>();
+        listaCategoria = await categoriaService.Listar();
+    }
+
+    private async Task GuardarCategoria()
+    {
+        try
+        {
+            int id;
+            string mensaje;
+
+            if (this.idcategoria == 0)
+            {
+                id = await this.categoriaService.Registrar(this.categoriaDTO);
+                mensaje = "Categoria Registrado Exitosamente";
+            }
+            else
+            {
+                id = await this.categoriaService.Editar(this.categoriaDTO, this.idcategoria);
+                mensaje = "Categoria Editado Exitosamente";
+            }
+
+            if (id != 0)
+            {
+                this.idcategoria = 0;
+                this.categoriaDTO = new CategoriaDTO();
+
+                await Swal.FireAsync("Cambios Guardados", mensaje, SweetAlertIcon.Success);
+
+                await CargarListaCategorias();
+                StateHasChanged();
+            }
+            else
+            {
+                await Swal.FireAsync("Error", "No se pudo guardar la categoria", SweetAlertIcon.Error);
+            }
+        }
+        catch (Exception ex)
+        {
+            await Swal.FireAsync("Error", $"Ocurrió un error: {ex.Message}", SweetAlertIcon.Error);
+        }
+    }
+
+
+    private async void EditarCategoria(int id)
+    {
+        var categoriaObtenida = await categoriaService.Buscar(id);
+
+        categoriaDTO.Nombre = categoriaObtenida.Nombre;
+        categoriaDTO.Descripcion = categoriaObtenida.Descripcion;
+        categoriaDTO.Idcategoria = categoriaObtenida.Idcategoria;
+
+        this.idcategoria = id;
+
+        StateHasChanged();
+    }
+
+    private async void EliminarCategoria(int id)
+    {
+        var resultado = await Swal.FireAsync(new SweetAlertOptions
+            {
+                Title = "Eliminar Categoria",
+                Text = "Deseas eliminar esta Categoria?",
+                Icon = SweetAlertIcon.Question,
+                ShowCancelButton = true
+        });
+
+        if (resultado.IsConfirmed)
+        {
+            var eliminado = await categoriaService.Eliminar(id);
+
+            if (eliminado)
+            {
+                await Swal.FireAsync("Eliminado", "Categoria Eliminada del Registro", SweetAlertIcon.Info);
+                await CargarListaCategorias();
+                StateHasChanged();
+            }
+            else
+            {
+               await Swal.FireAsync("Error", "No pudo ser eliminada la categoria", SweetAlertIcon.Error); 
+            }
+
+        }
+    }
+}
+

@@ -1,0 +1,54 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Jose\\Documents\\.NET\\BLAZOR\\proyecto2\\Blazor2\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{82E1A0A7-8E57-4DC9-8C06-FCB71FF254D8}|BlazorApp1.Client\\BlazorApp1.Client.csproj|c:\\users\\jose\\documents\\.net\\blazor\\proyecto2\\blazor2\\blazorapp1.client\\pages\\producto.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{82E1A0A7-8E57-4DC9-8C06-FCB71FF254D8}|BlazorApp1.Client\\BlazorApp1.Client.csproj|solutionrelative:blazorapp1.client\\pages\\producto.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A80364-951E-486E-BD5E-3AD5DB137E7A}|BlazorApp1.DTOs\\BlazorApp1.DTOs.csproj|c:\\users\\jose\\documents\\.net\\blazor\\proyecto2\\blazor2\\blazorapp1.dtos\\productodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A80364-951E-486E-BD5E-3AD5DB137E7A}|BlazorApp1.DTOs\\BlazorApp1.DTOs.csproj|solutionrelative:blazorapp1.dtos\\productodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ProductoDTO.cs",
+              "DocumentMoniker": "C:\\Users\\Jose\\Documents\\.NET\\BLAZOR\\proyecto2\\Blazor2\\BlazorApp1.DTOs\\ProductoDTO.cs",
+              "RelativeDocumentMoniker": "BlazorApp1.DTOs\\ProductoDTO.cs",
+              "ToolTip": "C:\\Users\\Jose\\Documents\\.NET\\BLAZOR\\proyecto2\\Blazor2\\BlazorApp1.DTOs\\ProductoDTO.cs",
+              "RelativeToolTip": "BlazorApp1.DTOs\\ProductoDTO.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-06T19:14:33.521Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Producto.razor",
+              "DocumentMoniker": "C:\\Users\\Jose\\Documents\\.NET\\BLAZOR\\proyecto2\\Blazor2\\BlazorApp1.Client\\Pages\\Producto.razor",
+              "RelativeDocumentMoniker": "BlazorApp1.Client\\Pages\\Producto.razor",
+              "ToolTip": "C:\\Users\\Jose\\Documents\\.NET\\BLAZOR\\proyecto2\\Blazor2\\BlazorApp1.Client\\Pages\\Producto.razor",
+              "RelativeToolTip": "BlazorApp1.Client\\Pages\\Producto.razor",
+              "ViewState": "AQIAALEAAAAAAAAAAAAAAMYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-06T16:36:44.528Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
