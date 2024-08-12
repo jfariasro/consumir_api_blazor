@@ -1047,3 +1047,4 @@ C:\Users\Jose\Documents\.NET\BLAZOR\proyecto2\Blazor2\BlazorApp1.Client\bin\Debu
 C:\Users\Jose\Documents\.NET\BLAZOR\proyecto2\Blazor2\BlazorApp1.Client\bin\Debug\net8.0\CurrieTechnologies.Razor.SweetAlert2.dll
 C:\Users\Jose\Documents\.NET\BLAZOR\proyecto2\Blazor2\BlazorApp1.Client\obj\Debug\net8.0\webcil\CurrieTechnologies.Razor.SweetAlert2.wasm
 C:\Users\Jose\Documents\.NET\BLAZOR\proyecto2\Blazor2\BlazorApp1.Client\obj\Debug\net8.0\compressed\u4b9jwvkx4.gz
+C:\Users\Jose\Documents\.NET\BLAZOR\proyecto2\Blazor2\BlazorApp1.Client\obj\Debug\net8.0\BlazorApp1.Client.sourcelink.json

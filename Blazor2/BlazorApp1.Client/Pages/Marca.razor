@@ -5,13 +5,13 @@
 
 @inject SweetAlertService Swal;
 @inject IMarcaService marcaService;
-
+@inject IJSRuntime JSRuntime;
 
 <PageTitle>Marcas</PageTitle>
 
 <h3>Marca</h3>
 
-<div class="content">
+<div class="content mb-2">
     <div class="row">
         <input type="hidden" name="name" value="@idmarca" />
 
@@ -35,7 +35,7 @@
 
     <hr />
 
-    <table id="example2" class="table">
+    <table id="example" class="table">
         <thead>
             <tr>
                 <th>Categoria</th>
@@ -75,12 +75,24 @@
     protected override async Task OnInitializedAsync()
     {
         await CargarListaMarcas();
+        await DataTable();
+
     }
 
     private async Task CargarListaMarcas()
     {
         listaMarca = new List<MarcaDTO>();
         listaMarca = await marcaService.Listar();
+    }
+
+    private async Task DataTable()
+    {
+        await JSRuntime.InvokeAsync<object>("TestDataTablesAdd");
+    }
+
+    private async Task LimpiarTable()
+    {
+        await JSRuntime.InvokeAsync<object>("Limpiar");
     }
 
     private async Task GuardarMarca()
@@ -108,7 +120,9 @@
 
                 await Swal.FireAsync("Cambios Guardados", mensaje, SweetAlertIcon.Success);
 
+                await LimpiarTable();
                 await CargarListaMarcas();
+                await DataTable();
                 StateHasChanged();
             }
             else
@@ -153,7 +167,9 @@
             if (eliminado)
             {
                 await Swal.FireAsync("Eliminado", "Marca Eliminada del Registro", SweetAlertIcon.Info);
+                await LimpiarTable();
                 await CargarListaMarcas();
+                await DataTable();
                 StateHasChanged();
             }
             else

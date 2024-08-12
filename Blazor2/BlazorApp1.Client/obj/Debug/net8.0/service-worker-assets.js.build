@@ -25,7 +25,7 @@
       "url": "icon-512.png"
     },
     {
-      "hash": "sha256-ZtwnMYlhdZwECM6akL9Qp1kaJVAf2f1uv2mnCXl2Nw0=",
+      "hash": "sha256-j1riVepwuGPhk\/9BxlSOXAEXkWgbXGLo1IhSM6dC8HY=",
       "url": "index.html"
     },
     {
@@ -857,15 +857,15 @@
       "url": "_framework\/BlazorApp1.DTOs.pdb"
     },
     {
-      "hash": "sha256-fICM+guZEHixHokBCLtQb8maEWN\/crZZDNJrf0zU8dA=",
+      "hash": "sha256-211eOGTg5EZxmbeiYSL2rQewFthBjGlOr0AFeeevC9Y=",
       "url": "_framework\/BlazorApp1.Client.wasm"
     },
     {
-      "hash": "sha256-mKVe1Y0rZMiosiSid7KJJcFwPt\/S+8CRxIqlsjcV3Z0=",
+      "hash": "sha256-6zi6bVfzQfheAQFKRIkGGhePok+yh+m6lZWBi6CVm3o=",
       "url": "_framework\/BlazorApp1.Client.pdb"
     },
     {
-      "hash": "sha256-qFTmoxVvGI4B+HqidCXza8KbPO9hZ7pc5ulHmw28ZV4=",
+      "hash": "sha256-oWfuKSuEz9cni8uLq9wYQdPwBaDQRuym76EwNn9xwJI=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -1005,5 +1005,5 @@
       "url": "_content\/CurrieTechnologies.Razor.SweetAlert2\/wordpressAdminTheme.min.js"
     }
   ],
-  "version": "gNegZEZq"
+  "version": "dTlFiOFQ"
 };
