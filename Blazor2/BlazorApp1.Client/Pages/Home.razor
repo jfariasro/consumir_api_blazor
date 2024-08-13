@@ -101,33 +101,44 @@
             int id;
             string mensaje;
 
-            if (this.idcategoria == 0)
+            string m = CategoriaDTO.CamposVacios(categoriaDTO);
+
+            if(m.Length > 0)
             {
-                id = await this.categoriaService.Registrar(this.categoriaDTO);
-                mensaje = "Categoria Registrado Exitosamente";
+                await Swal.FireAsync("Error", m, SweetAlertIcon.Error);
             }
             else
             {
-                id = await this.categoriaService.Editar(this.categoriaDTO, this.idcategoria);
-                mensaje = "Categoria Editado Exitosamente";
+                if (this.idcategoria == 0)
+                {
+                    id = await this.categoriaService.Registrar(this.categoriaDTO);
+                    mensaje = "Categoria Registrado Exitosamente";
+                }
+                else
+                {
+                    id = await this.categoriaService.Editar(this.categoriaDTO, this.idcategoria);
+                    mensaje = "Categoria Editado Exitosamente";
+                }
+
+                if (id != 0)
+                {
+                    this.idcategoria = 0;
+                    this.categoriaDTO = new CategoriaDTO();
+
+                    await Swal.FireAsync("Cambios Guardados", mensaje, SweetAlertIcon.Success);
+
+                    await LimpiarTable();
+                    await CargarListaCategorias();
+                    await DataTable();
+                }
+                else
+                {
+                    await Swal.FireAsync("Error", "No se pudo guardar la categoria", SweetAlertIcon.Error);
+                }
             }
 
-            if (id != 0)
-            {
-                this.idcategoria = 0;
-                this.categoriaDTO = new CategoriaDTO();
+            StateHasChanged();
 
-                await Swal.FireAsync("Cambios Guardados", mensaje, SweetAlertIcon.Success);
-
-                await LimpiarTable();
-                await CargarListaCategorias();
-                await DataTable();
-                StateHasChanged();
-            }
-            else
-            {
-                await Swal.FireAsync("Error", "No se pudo guardar la categoria", SweetAlertIcon.Error);
-            }
         }
         catch (Exception ex)
         {

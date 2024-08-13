@@ -102,33 +102,43 @@
             int id;
             string mensaje;
 
-            if (this.idmarca == 0)
+            string m = MarcaDTO.CamposVacios(marcaDTO);
+
+            if(m.Length > 0)
             {
-                id = await this.marcaService.Registrar(this.marcaDTO);
-                mensaje = "Marca Registrada Exitosamente";
+                await Swal.FireAsync("Error", m, SweetAlertIcon.Error);
             }
             else
             {
-                id = await this.marcaService.Editar(this.marcaDTO, this.idmarca);
-                mensaje = "Marca Editada Exitosamente";
-            }
+                if (this.idmarca == 0)
+                {
+                    id = await this.marcaService.Registrar(this.marcaDTO);
+                    mensaje = "Marca Registrada Exitosamente";
+                }
+                else
+                {
+                    id = await this.marcaService.Editar(this.marcaDTO, this.idmarca);
+                    mensaje = "Marca Editada Exitosamente";
+                }
 
-            if (id != 0)
-            {
-                this.idmarca = 0;
-                this.marcaDTO = new MarcaDTO();
+                if (id != 0)
+                {
+                    this.idmarca = 0;
+                    this.marcaDTO = new MarcaDTO();
 
-                await Swal.FireAsync("Cambios Guardados", mensaje, SweetAlertIcon.Success);
+                    await Swal.FireAsync("Cambios Guardados", mensaje, SweetAlertIcon.Success);
 
-                await LimpiarTable();
-                await CargarListaMarcas();
-                await DataTable();
-                StateHasChanged();
+                    await LimpiarTable();
+                    await CargarListaMarcas();
+                    await DataTable();
+                }
+                else
+                {
+                    await Swal.FireAsync("Error", "No se pudo guardar la categoria", SweetAlertIcon.Error);
+                }
             }
-            else
-            {
-                await Swal.FireAsync("Error", "No se pudo guardar la categoria", SweetAlertIcon.Error);
-            }
+            StateHasChanged();
+
         }
         catch (Exception ex)
         {

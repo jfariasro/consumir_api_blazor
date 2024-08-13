@@ -3,12 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\Jose\\Documents\\.NET\\BLAZOR\\proyecto2\\Blazor2\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{82E1A0A7-8E57-4DC9-8C06-FCB71FF254D8}|BlazorApp1.Client\\BlazorApp1.Client.csproj|c:\\users\\jose\\documents\\.net\\blazor\\proyecto2\\blazor2\\blazorapp1.client\\pages\\producto.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{82E1A0A7-8E57-4DC9-8C06-FCB71FF254D8}|BlazorApp1.Client\\BlazorApp1.Client.csproj|solutionrelative:blazorapp1.client\\pages\\producto.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{82E1A0A7-8E57-4DC9-8C06-FCB71FF254D8}|BlazorApp1.Client\\BlazorApp1.Client.csproj|c:\\users\\jose\\documents\\.net\\blazor\\proyecto2\\blazor2\\blazorapp1.client\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{82E1A0A7-8E57-4DC9-8C06-FCB71FF254D8}|BlazorApp1.Client\\BlazorApp1.Client.csproj|solutionrelative:blazorapp1.client\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{82E1A0A7-8E57-4DC9-8C06-FCB71FF254D8}|BlazorApp1.Client\\BlazorApp1.Client.csproj|c:\\users\\jose\\documents\\.net\\blazor\\proyecto2\\blazor2\\blazorapp1.client\\pages\\marca.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{82E1A0A7-8E57-4DC9-8C06-FCB71FF254D8}|BlazorApp1.Client\\BlazorApp1.Client.csproj|solutionrelative:blazorapp1.client\\pages\\marca.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A80364-951E-486E-BD5E-3AD5DB137E7A}|BlazorApp1.DTOs\\BlazorApp1.DTOs.csproj|c:\\users\\jose\\documents\\.net\\blazor\\proyecto2\\blazor2\\blazorapp1.dtos\\categoriadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A80364-951E-486E-BD5E-3AD5DB137E7A}|BlazorApp1.DTOs\\BlazorApp1.DTOs.csproj|solutionrelative:blazorapp1.dtos\\categoriadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A80364-951E-486E-BD5E-3AD5DB137E7A}|BlazorApp1.DTOs\\BlazorApp1.DTOs.csproj|c:\\users\\jose\\documents\\.net\\blazor\\proyecto2\\blazor2\\blazorapp1.dtos\\marcadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A80364-951E-486E-BD5E-3AD5DB137E7A}|BlazorApp1.DTOs\\BlazorApp1.DTOs.csproj|solutionrelative:blazorapp1.dtos\\marcadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -28,22 +36,48 @@
               "RelativeDocumentMoniker": "BlazorApp1.Client\\Pages\\Marca.razor",
               "ToolTip": "C:\\Users\\Jose\\Documents\\.NET\\BLAZOR\\proyecto2\\Blazor2\\BlazorApp1.Client\\Pages\\Marca.razor",
               "RelativeToolTip": "BlazorApp1.Client\\Pages\\Marca.razor",
-              "ViewState": "AQIAAG8AAAAAAAAAAAAAAHoAAAAQAAAA",
+              "ViewState": "AQIAAGAAAAAAAAAAAAAAAGgAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-08-12T17:29:14.115Z",
+              "WhenOpened": "2024-08-13T21:51:34.187Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Producto.razor",
-              "DocumentMoniker": "C:\\Users\\Jose\\Documents\\.NET\\BLAZOR\\proyecto2\\Blazor2\\BlazorApp1.Client\\Pages\\Producto.razor",
-              "RelativeDocumentMoniker": "BlazorApp1.Client\\Pages\\Producto.razor",
-              "ToolTip": "C:\\Users\\Jose\\Documents\\.NET\\BLAZOR\\proyecto2\\Blazor2\\BlazorApp1.Client\\Pages\\Producto.razor",
-              "RelativeToolTip": "BlazorApp1.Client\\Pages\\Producto.razor",
-              "ViewState": "AQIAANgAAAAAAAAAAAAAAO8AAAAiAAAA",
+              "Title": "Home.razor",
+              "DocumentMoniker": "C:\\Users\\Jose\\Documents\\.NET\\BLAZOR\\proyecto2\\Blazor2\\BlazorApp1.Client\\Pages\\Home.razor",
+              "RelativeDocumentMoniker": "BlazorApp1.Client\\Pages\\Home.razor",
+              "ToolTip": "C:\\Users\\Jose\\Documents\\.NET\\BLAZOR\\proyecto2\\Blazor2\\BlazorApp1.Client\\Pages\\Home.razor",
+              "RelativeToolTip": "BlazorApp1.Client\\Pages\\Home.razor",
+              "ViewState": "AQIAAHgAAAAAAAAAAAAAAIsAAAAeAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-08-12T17:29:02.171Z",
+              "WhenOpened": "2024-08-13T21:51:32.88Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CategoriaDTO.cs",
+              "DocumentMoniker": "C:\\Users\\Jose\\Documents\\.NET\\BLAZOR\\proyecto2\\Blazor2\\BlazorApp1.DTOs\\CategoriaDTO.cs",
+              "RelativeDocumentMoniker": "BlazorApp1.DTOs\\CategoriaDTO.cs",
+              "ToolTip": "C:\\Users\\Jose\\Documents\\.NET\\BLAZOR\\proyecto2\\Blazor2\\BlazorApp1.DTOs\\CategoriaDTO.cs",
+              "RelativeToolTip": "BlazorApp1.DTOs\\CategoriaDTO.cs",
+              "ViewState": "AQIAAAcAAAAAAAAAAAAuwBAAAABDAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-13T21:50:25.049Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MarcaDTO.cs",
+              "DocumentMoniker": "C:\\Users\\Jose\\Documents\\.NET\\BLAZOR\\proyecto2\\Blazor2\\BlazorApp1.DTOs\\MarcaDTO.cs",
+              "RelativeDocumentMoniker": "BlazorApp1.DTOs\\MarcaDTO.cs",
+              "ToolTip": "C:\\Users\\Jose\\Documents\\.NET\\BLAZOR\\proyecto2\\Blazor2\\BlazorApp1.DTOs\\MarcaDTO.cs",
+              "RelativeToolTip": "BlazorApp1.DTOs\\MarcaDTO.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAxwBAAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-13T21:50:09.64Z",
               "EditorCaption": ""
             }
           ]

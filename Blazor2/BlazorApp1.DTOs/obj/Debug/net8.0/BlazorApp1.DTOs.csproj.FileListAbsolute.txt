@@ -9,3 +9,4 @@ C:\Users\Jose\Documents\.NET\BLAZOR\proyecto2\Blazor2\BlazorApp1.DTOs\obj\Debug\
 C:\Users\Jose\Documents\.NET\BLAZOR\proyecto2\Blazor2\BlazorApp1.DTOs\obj\Debug\net8.0\refint\BlazorApp1.DTOs.dll
 C:\Users\Jose\Documents\.NET\BLAZOR\proyecto2\Blazor2\BlazorApp1.DTOs\obj\Debug\net8.0\BlazorApp1.DTOs.pdb
 C:\Users\Jose\Documents\.NET\BLAZOR\proyecto2\Blazor2\BlazorApp1.DTOs\obj\Debug\net8.0\ref\BlazorApp1.DTOs.dll
+C:\Users\Jose\Documents\.NET\BLAZOR\proyecto2\Blazor2\BlazorApp1.DTOs\obj\Debug\net8.0\BlazorApp1.DTOs.sourcelink.json

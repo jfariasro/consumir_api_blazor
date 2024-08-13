@@ -13,5 +13,23 @@ namespace BlazorApp1.DTOs
         public string? Nombre { get; set; }
 
         public string? Descripcion { get; set; }
+
+        public static string CamposVacios(MarcaDTO marcaDTO)
+        {
+            string mensaje = "";
+
+            if (string.IsNullOrWhiteSpace(marcaDTO.Nombre))
+            {
+                mensaje += "El nombre de la marca es obligatorio.<br>";
+            }
+
+            if (string.IsNullOrWhiteSpace(marcaDTO.Descripcion))
+            {
+                mensaje += "La descripción de la marca es obligatoria.<br>";
+            }
+
+            return mensaje;
+        }
+
     }
 }

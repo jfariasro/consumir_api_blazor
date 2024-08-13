@@ -17,6 +17,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" />
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+    <script src="https://cdn.datatables.net/fixedheader/3.2.2/js/dataTables.fixedHeader.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
 </head>
 
 <body>
@@ -39,19 +42,58 @@
     <script>
         function TestDataTablesAdd(table) {
             $(document).ready(function () {
+                var dataTable = $('#example').DataTable();
+
+                $('#example thead .filters').remove();
+
+                $('#example thead tr').clone(true).addClass('filters').appendTo('#example thead');
+
+                dataTable.destroy();
                 $('#example').DataTable({
                     "language": {
                         "url": "https://cdn.datatables.net/plug-ins/1.11.1/i18n/es_es.json"
-                    }
+                    },
+                    orderCellsTop: true,
+                    fixedHeader: true,
+                    initComplete: function () {
+                        var api = this.api();
+
+                        api.columns().eq(0).each(function (colIdx) {
+                            var cell = $('.filters th').eq($(api.column(colIdx).header()).index());
+
+                            $(cell).html('<input type="text" placeholder="Buscar..." />');
+
+                            // Manejar eventos de entrada para búsqueda
+                            $('input', cell).on('keyup change', function () {
+                                // Obtener el valor de búsqueda
+                                var cursorPosition = this.selectionStart;
+                                var searchValue = this.value;
+
+                                // Buscar en la columna
+                                api
+                                    .column(colIdx)
+                                    .search(searchValue, false, true) // false para exacto, true para búsqueda con expresiones regulares
+                                    .draw();
+
+                                // Mantener el cursor en la misma posición
+                                $(this).focus()[0].setSelectionRange(cursorPosition, cursorPosition);
+                            });
+                        });
+                    },
                 });
-                $('#example').draw();
             });
         }
 
-        function Limpiar(table) {
-            $(document).ready(function () {
-                $('#example').DataTable().destroy();
-            });
+        function Limpiar() {
+            var dataTable = $('#example').DataTable();
+
+            // Limpiar los filtros
+            $('#example thead .filters input').val('');
+
+            // Restablecer la búsqueda
+            dataTable.search('').columns().search('').draw();
+
+            dataTable.destroy();
         }
     </script>
     <script>navigator.serviceWorker.register('service-worker.js');</script>

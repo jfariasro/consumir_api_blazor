@@ -2,6 +2,7 @@
 @using BlazorApp1.Client.Services.Contracts
 @using BlazorApp1.DTOs
 @using CurrieTechnologies.Razor.SweetAlert2
+@using System.ComponentModel.DataAnnotations
 
 @inject SweetAlertService Swal;
 @inject IMarcaService marcaService;
@@ -13,7 +14,7 @@
 
 <h3>Producto</h3>
 
-<div class="content">
+<div class="content mb-3">
     <div class="row">
         <input type="hidden" name="name" value="@idproducto" />
         <div class="col-md-12">
@@ -68,7 +69,8 @@
 
     <hr />
 
-    <table id="example" class="table">
+    <div class="table-responsive mt-2">
+        <table id="example" class="table">
         <thead>
             <tr>
                 <th>Marca</th>
@@ -104,8 +106,8 @@
             }
         </tbody>
     </table>
-
-
+    </div>
+    
 </div>
 
 @code {
@@ -165,33 +167,46 @@
             int id;
             string mensaje;
 
-            if (this.idproducto == 0)
+            string m = ProductoDTO.CamposVacios(productoDTO);
+
+            if(m.Length > 0)
             {
-                id = await this.productoService.Registrar(this.productoDTO);
-                mensaje = "Producto Registrado Exitosamente";
+                await Swal.FireAsync("Error", m, SweetAlertIcon.Error);
+                // await Swal.FireAsync("Error", productoDTO.Idcategoria.ToString(), SweetAlertIcon.Error);
             }
             else
             {
-                id = await this.productoService.Editar(this.productoDTO, this.idproducto);
-                mensaje = "Producto Editado Exitosamente";
-            }
+               
+                if (this.idproducto == 0)
+                {
+                    id = await this.productoService.Registrar(this.productoDTO);
+                    mensaje = "Producto Registrado Exitosamente";
+                }
+                else
+                {
+                    id = await this.productoService.Editar(this.productoDTO, this.idproducto);
+                    mensaje = "Producto Editado Exitosamente";
+                }
 
-            if (id != 0)
-            {
-                this.idproducto = 0;
-                this.productoDTO = new ProductoDTO();
+                if (id != 0)
+                {
+                    this.idproducto = 0;
+                    this.productoDTO = new ProductoDTO();
 
-                await Swal.FireAsync("Cambios Guardados", mensaje, SweetAlertIcon.Success);
+                    await Swal.FireAsync("Cambios Guardados", mensaje, SweetAlertIcon.Success);
 
-                await LimpiarTable();
-                await CargarListaProductos();
-                await DataTable();
-                StateHasChanged();
+                    await LimpiarTable();
+                    await CargarListaProductos();
+                    await DataTable();
+                }
+                else
+                {
+                    await Swal.FireAsync("Error", "No se pudo guardar el producto", SweetAlertIcon.Error);
+                }
+
             }
-            else
-            {
-                await Swal.FireAsync("Error", "No se pudo guardar el producto", SweetAlertIcon.Error);
-            }
+            StateHasChanged();
+            
         }
         catch (Exception ex)
         {
